@@ -1,0 +1,24 @@
+[project]
+name = "menu-services"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Héctor Lozada",email = "imatsu@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "flask (>=3.1.1,<4.0.0)",
+    "sqlalchemy (>=2.0.41,<3.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^9.2.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
