@@ -1,0 +1,57 @@
+# Archivos temporales y de entorno de Python
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info
+dist
+build
+__pycache__/
+.python-version
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+ENV/
+
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Jupyter Notebook
+.ipynb_checkpoints
+
+# Archivos de pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Archivos de mypy
+.mypy_cache/
+
+# Archivos de PyCharm
+.idea/
+*.iml
+
+# Archivos de Spyder
+.spyproject/
+
+# Archivos de pyenv
+.python-version
