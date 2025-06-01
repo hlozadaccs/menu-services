@@ -19,6 +19,8 @@ service MenuService {
   rpc UpdateMenuItem (UpdateMenuItemRequest) returns (MenuItemResponse);
 
   rpc DeleteMenuItem (DeleteMenuItemRequest) returns (DeleteMenuItemResponse);
+
+  rpc RestoreMenuItem (RestoreMenuItemRequest) returns (MenuItemResponse);
 }
 
 message Empty {}
@@ -62,7 +64,12 @@ message UpdateMenuItemRequest {
 }
 
 message DeleteMenuItemRequest {
-    int32 id = 1;
+  int32 id = 1;
+  bool permanent = 2;
+}
+
+message RestoreMenuItemRequest {
+  int32 id = 1;
 }
 
 message MenuItemResponse {
@@ -76,4 +83,5 @@ message ListMenuItemsResponse {
 message DeleteMenuItemResponse {
     bool success = 1;
     string message = 2;
+    bool is_soft_deleted = 3;
 }

@@ -24,3 +24,6 @@ class MenuItem(db.Model):
     )
     price = sqlalchemy.Column(sqlalchemy.Numeric(10, 2))
     available = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
+
+    is_deleted = db.Column(db.Boolean, default=False)
+    deleted_at = db.Column(db.DateTime, nullable=True)

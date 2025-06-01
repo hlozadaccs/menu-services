@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import grpc
 
 from infrastructure.db import db
@@ -48,14 +50,16 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
 
     def GetMenuItem(self, request, context):
         with app.app_context():
-            item = MenuItem.query.get(request.id)
+            item = MenuItem.query.filter(
+                MenuItem.id == request.id, MenuItem.is_deleted.is_(False)
+            ).first()
             if not item:
                 context.abort(grpc.StatusCode.NOT_FOUND, "Menu item not found")
             return menu_pb2.MenuItemResponse(item=self._item_to_proto(item))
 
     def ListMenuItems(self, request, context):
         with app.app_context():
-            query = MenuItem.query
+            query = MenuItem.query.filter(MenuItem.is_deleted.is_(False))
 
             # Filtro por categoría
             if request.HasField("category"):
@@ -90,7 +94,9 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
 
     def UpdateMenuItem(self, request, context):
         with app.app_context():
-            item = MenuItem.query.get(request.id)
+            item = MenuItem.query.filter(
+                MenuItem.id == request.id, MenuItem.is_deleted.is_(False)
+            ).first()
             if not item:
                 context.abort(grpc.StatusCode.NOT_FOUND, "Menu item not found")
 
@@ -113,13 +119,23 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
             item = MenuItem.query.get(request.id)
             if not item:
                 return menu_pb2.DeleteMenuItemResponse(
-                    success=False, message="Not found"
+                    success=False, message="Item Not found"
+                )
+
+            if not request.permanent:
+                item.is_deleted = True
+                item.deleted_at = datetime.utcnow()
+                db.session.commit()
+                return menu_pb2.DeleteMenuItemResponse(
+                    success=True,
+                    message="Item marcado como eliminado",
+                    is_soft_deleted=True,
                 )
 
             db.session.delete(item)
             db.session.commit()
             return menu_pb2.DeleteMenuItemResponse(
-                success=True, message="Deleted successfully"
+                success=True, message="Deleted successfully", is_soft_deleted=False
             )
 
     def _item_to_proto(self, item):
@@ -131,3 +147,20 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
             available=item.available,
             description=item.description,
         )
+
+    def RestoreMenuItem(self, request, context):
+        with app.app_context():
+            item = MenuItem.query.get(request.id)
+            if not item:
+                context.abort(grpc.StatusCode.NOT_FOUND, "Item no encontrado")
+
+            if not item.is_deleted:
+                context.abort(
+                    grpc.StatusCode.FAILED_PRECONDITION, "El item no está eliminado"
+                )
+
+            item.is_deleted = False
+            item.deleted_at = None
+            db.session.commit()
+
+            return menu_pb2.MenuItemResponse(item=self._item_to_proto(item))

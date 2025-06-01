@@ -59,6 +59,11 @@ class MenuServiceStub(object):
                 request_serializer=menu__pb2.DeleteMenuItemRequest.SerializeToString,
                 response_deserializer=menu__pb2.DeleteMenuItemResponse.FromString,
                 _registered_method=True)
+        self.RestoreMenuItem = channel.unary_unary(
+                '/MenuService/RestoreMenuItem',
+                request_serializer=menu__pb2.RestoreMenuItemRequest.SerializeToString,
+                response_deserializer=menu__pb2.MenuItemResponse.FromString,
+                _registered_method=True)
 
 
 class MenuServiceServicer(object):
@@ -94,6 +99,12 @@ class MenuServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def RestoreMenuItem(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MenuServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -121,6 +132,11 @@ def add_MenuServiceServicer_to_server(servicer, server):
                     servicer.DeleteMenuItem,
                     request_deserializer=menu__pb2.DeleteMenuItemRequest.FromString,
                     response_serializer=menu__pb2.DeleteMenuItemResponse.SerializeToString,
+            ),
+            'RestoreMenuItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.RestoreMenuItem,
+                    request_deserializer=menu__pb2.RestoreMenuItemRequest.FromString,
+                    response_serializer=menu__pb2.MenuItemResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -258,6 +274,33 @@ class MenuService(object):
             '/MenuService/DeleteMenuItem',
             menu__pb2.DeleteMenuItemRequest.SerializeToString,
             menu__pb2.DeleteMenuItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def RestoreMenuItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/MenuService/RestoreMenuItem',
+            menu__pb2.RestoreMenuItemRequest.SerializeToString,
+            menu__pb2.MenuItemResponse.FromString,
             options,
             channel_credentials,
             insecure,
