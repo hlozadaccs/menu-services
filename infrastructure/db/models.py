@@ -1,9 +1,8 @@
 import enum
 
 import sqlalchemy
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
+from infrastructure.db import db
 
 
 class MenuCategory(enum.Enum):
@@ -16,9 +15,7 @@ class MenuCategory(enum.Enum):
     OTHER = "OTHER"
 
 
-class MenuItem(Base):
-    __tablename__ = "services_menuitem"
-
+class MenuItem(db.Model):
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
     name = sqlalchemy.Column(sqlalchemy.String(100), nullable=False)
     description = sqlalchemy.Column(sqlalchemy.Text)

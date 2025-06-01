@@ -9,5 +9,4 @@ bp = Blueprint("auth", __name__, url_prefix="/api/v1/menu")
 def list_menu_items():
     db = g.get("db")
     items = db.query(MenuItem).all()
-    breakpoint()
     return [item.id for item in items]
