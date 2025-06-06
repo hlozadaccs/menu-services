@@ -25,5 +25,29 @@ class MenuItem(db.Model):
     price = sqlalchemy.Column(sqlalchemy.Numeric(10, 2))
     available = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
 
-    is_deleted = db.Column(db.Boolean, default=False)
-    deleted_at = db.Column(db.DateTime, nullable=True)
+    is_deleted = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
+    deleted_at = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
+
+    def __init__(
+        self,
+        name: str,
+        description: str,
+        category: MenuCategory,
+        price: float,
+        available: bool = True,
+    ):
+        self.name = name
+        self.description = description
+        self.category = category
+        self.price = price
+        self.available = available
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "category": self.category.value,
+            "price": self.price,
+            "available": self.available,
+        }

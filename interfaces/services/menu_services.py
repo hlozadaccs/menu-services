@@ -24,7 +24,7 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
     def CreateMenuItem(self, request, context):
         with app.app_context():
             try:
-                db_category = self.CATEGORY_MAPPING.get(request.category)
+                db_category = self.CATEGORY_MAPPING[request.category]
                 if not db_category:
                     context.abort(
                         grpc.StatusCode.INVALID_ARGUMENT,
@@ -65,7 +65,7 @@ class MenuService(menu_pb2_grpc.MenuServiceServicer):
             if request.HasField("category"):
                 db_category = self.CATEGORY_MAPPING.get(request.category)
                 if db_category:
-                    query = query.filter(MenuItem.category == db_category)
+                    query = query.filter(MenuItem.category == db_category.value)
 
             # Filtro por rango de precios
             if request.HasField("min_price"):

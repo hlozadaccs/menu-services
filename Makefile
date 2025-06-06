@@ -9,6 +9,7 @@ proto-gen:
 		-I $(PROTO_SRC) \
 		--python_out=$(PROTO_GEN_PYTHON) \
 		--grpc_python_out=$(PROTO_GEN_PYTHON) \
+		--mypy_out=$(PROTO_GEN_PYTHON) \
 		$(PROTO_SRC)/menu.proto
 	@# Fix imports - Versión compatible universal
 	@if [ -f "$(PROTO_GEN_PYTHON)/menu_pb2_grpc.py" ]; then \

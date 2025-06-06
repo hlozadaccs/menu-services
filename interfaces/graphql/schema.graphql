@@ -1,0 +1,42 @@
+type MenuItem {
+    id: Int!
+    name: String!
+    description: String
+    category: String!
+    price: Float!
+    available: Boolean!
+}
+
+type Query {
+    menuItems(  # Muchos
+        nameContains: String
+        descriptionContains: String
+        category: String
+        available: Boolean
+        orderBy: String
+        orderDirection: String
+
+    ): [MenuItem!]!
+    menuItem(id: Int!): MenuItem  # Uno
+}
+
+input MenuItemInput {
+    name: String!
+    description: String
+    category: String!
+    price: Float!
+    available: Boolean!
+}
+
+type DeleteResult {
+    success: Boolean!
+    isSoftDeleted: Boolean!
+}
+
+type Mutation {
+    createMenuItem(input: MenuItemInput!): MenuItem!
+    # batchCreateMenuItems(input: [MenuItemInput!]): [MenuItemInput!]
+    updateMenuItem(id: Int!, input: MenuItemInput!): MenuItem!
+    deleteMenuItem(id: Int!, permanent: Boolean = false): DeleteResult!
+    restoreMenuItem(id: Int!): MenuItem!
+}

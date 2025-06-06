@@ -1,0 +1,29 @@
+name,description,category,price
+Bruschetta al Pomodoro,"Pan tostado con tomate, ajo, albahaca y aceite de oliva",APPETIZER,4.5
+Carpaccio di Manzo,"Finas láminas de res con rúcula, parmesano y limón",APPETIZER,7.5
+Prosciutto e Melone,Jamón curado italiano con melón dulce,APPETIZER,6.0
+Frittura di Calamari,Calamares empanizados fritos con salsa aioli,APPETIZER,8.0
+Mozzarella in Carrozza,Mozzarella frita entre pan con salsa marinara,APPETIZER,5.5
+Lasagna alla Bolognese,Lasaña de pasta fresca con ragú y salsa bechamel,MAIN_COURSE,12.0
+Risotto ai Frutti di Mare,Risotto cremoso con mariscos mixtos,MAIN_COURSE,14.0
+Gnocchi al Pesto,Ñoquis de papa con salsa pesto genovesa,MAIN_COURSE,11.0
+Pasta alla Norma,"Pasta con berenjena, tomate, ricotta salata y albahaca",MAIN_COURSE,10.0
+Tagliatelle al Ragù di Cinghiale,Tagliatelle con ragú de jabalí,MAIN_COURSE,13.5
+Ravioli di Ricotta e Spinaci,Ravioles rellenos con ricotta y espinaca en salsa de mantequilla y salvia,MAIN_COURSE,11.5
+Pizza Margherita,"Pizza tradicional con tomate, mozzarella y albahaca",MAIN_COURSE,9.0
+Pizza Quattro Stagioni,"Pizza con jamón, champiñones, alcachofas y aceitunas",MAIN_COURSE,10.5
+Tiramisù,"Postre de capas de mascarpone, café y cacao",DESSERT,6.0
+Panna Cotta,Flan de nata con salsa de frutos rojos,DESSERT,5.5
+Cannoli Siciliani,Tubos de masa frita rellenos de crema de ricotta,DESSERT,6.5
+Zabaione,"Crema batida de yemas de huevo, azúcar y vino Marsala",DESSERT,5.0
+Gelato alla Stracciatella,Helado artesanal con trozos de chocolate,DESSERT,4.0
+Acqua Frizzante,Agua mineral con gas,SOFT_DRINK,2.5
+Aranciata San Pellegrino,Refresco italiano de naranja,SOFT_DRINK,3.0
+Limonata San Pellegrino,Refresco italiano de limón,SOFT_DRINK,3.0
+Succo di Pesca,Jugo de durazno,JUICE,3.0
+Succo di Pera,Jugo de pera,JUICE,3.0
+Chianti Classico,Vino tinto seco de la región Toscana,ALCOHOLIC_BEVERAGE,8.0
+Prosecco,Vino espumoso blanco,ALCOHOLIC_BEVERAGE,7.5
+Barolo,"Vino tinto de Piamonte, estructurado e intenso",ALCOHOLIC_BEVERAGE,10.0
+Limoncello,Licor de limón del sur de Italia,ALCOHOLIC_BEVERAGE,5.0
+Amaro Averna,Licor digestivo de hierbas,ALCOHOLIC_BEVERAGE,4.5

@@ -33,7 +33,7 @@ grpcurl -import-path protos -proto menu.proto -plaintext localhost:50051 describ
 ```bash
 grpcurl -import-path protos -proto menu.proto -plaintext -d '{
   "name": "Pizza Margherita",
-  "category": "MAIN",
+  "category": "MAIN_COURSE",
   "price": 12.99,
   "available": true,
   "description": "Classic pizza"
